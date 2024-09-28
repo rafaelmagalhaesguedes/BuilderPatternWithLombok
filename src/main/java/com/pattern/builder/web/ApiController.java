@@ -6,6 +6,7 @@ import com.pattern.builder.domain.dto.RegisterUserDto;
 import com.pattern.builder.domain.dto.BasicUserDto;
 import com.pattern.builder.domain.dto.PremiumUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ApiController {
     }
 
     @PostMapping("/user/basic")
+    @ResponseStatus(HttpStatus.CREATED)
     public BasicUserDto saveWithoutCode(@RequestBody RegisterUserDto user) {
         var basicUser = userService.saveBasicUser(user.toUser());
 
@@ -28,6 +30,7 @@ public class ApiController {
     }
 
     @PostMapping("/user/premium")
+    @ResponseStatus(HttpStatus.CREATED)
     public PremiumUserDto saveWithCode(@RequestBody RegisterUserDto user) {
         var premiumUser = userService.savePremiumUser(user.toUser());
 

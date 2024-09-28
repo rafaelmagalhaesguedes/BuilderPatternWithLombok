@@ -21,17 +21,17 @@ public class ApiController {
     }
 
     @PostMapping("/user/basic")
-    public PremiumUserDto saveWithoutCode(@RequestBody RegisterUserDto user) {
+    public BasicUserDto saveWithoutCode(@RequestBody RegisterUserDto user) {
         var basicUser = userService.saveBasicUser(user.toUser());
 
-        return PremiumUserDto.fromUser(basicUser);
+        return BasicUserDto.fromUser(basicUser);
     }
 
     @PostMapping("/user/premium")
-    public BasicUserDto saveWithCode(@RequestBody RegisterUserDto user) {
+    public PremiumUserDto saveWithCode(@RequestBody RegisterUserDto user) {
         var premiumUser = userService.savePremiumUser(user.toUser());
 
-        return BasicUserDto.fromUser(premiumUser);
+        return PremiumUserDto.fromUser(premiumUser);
     }
 
     @GetMapping("/user/basic")
